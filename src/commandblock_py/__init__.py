@@ -1,0 +1,1 @@
+print("Datapack package initialised!")
