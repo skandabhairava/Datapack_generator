@@ -7,7 +7,7 @@ setuptools.setup(
     name="commandblockpy_terroid",
     version="0.0.1",
     author="Terroid#0490",
-    author_email="adubovitsky1234@gmail.com",
+    author_email="skandabhairava@gmail.com",
     description="Datapack Creator",
     long_description=long_description,
     long_description_content_type="text/markdown",
