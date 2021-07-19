@@ -1,4 +1,5 @@
 from typing import List, Dict
+import json
 
 def say(context:str="") -> str :
     """
@@ -29,5 +30,16 @@ def tellraw(selector:str, nbt:Dict):
     selector:str -> The thing to say the tellraw to
     nbt:dict -> the json/nbt needed for the tellraw, might add ez nbt later
     """
-    return f"tellraw {selector} {nbt}\n"
+    return f"tellraw {selector} {json.dumps(nbt)}\n"
+
+def schedule(option:str, function:str, time:str = ""):
+    """
+    option:str -> The option to schedule (clear or function)
+    function:str -> The function to be scheduled/cleared
+    time:str -> The time to be scheduled ( d = day, s = seconds, and t = ticks) (only if option is "function")
+    """
+    if option == "function":
+        return f"schedule {option} {function} {time}\n"
     
+    elif option == "clear":
+        return f"schedule {option} {function}\n"
