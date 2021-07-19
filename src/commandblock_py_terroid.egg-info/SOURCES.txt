@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+src/commandblock_py/__init__.py
+src/commandblock_py/bar.py
+src/commandblock_py_terroid.egg-info/PKG-INFO
+src/commandblock_py_terroid.egg-info/SOURCES.txt
+src/commandblock_py_terroid.egg-info/dependency_links.txt
+src/commandblock_py_terroid.egg-info/top_level.txt
