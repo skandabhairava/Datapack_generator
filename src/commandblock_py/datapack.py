@@ -1,3 +1,4 @@
+import array
 import re, sys, os, shutil, time
 from typing import Union
 from colorama import Fore, Style, init
@@ -76,8 +77,11 @@ class Datapack:
 
         try:
             ctx=""
-            for element in content:
-                ctx += element if element[-1] == "\n" else element + "\n"
+            if isinstance(content, list):
+                for element in content:
+                    ctx += element if element[-1] == "\n" else element + "\n"
+            else:
+                ctx += content
 
             with open(f"{curdir}/.temp/{name}.mcfunction", "w") as func:
                 func.write(ctx)

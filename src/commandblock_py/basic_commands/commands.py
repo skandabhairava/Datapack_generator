@@ -15,3 +15,9 @@ def deop(player:str="") -> str:
     player:str -> Deops the player given
     """
     return f"deop {player}\n"
+
+def kill(selector:str="") -> str:
+    """
+    selector:str -> All the entities that must be killed
+    """
+    return f"kill {selector}\n"
