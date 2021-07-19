@@ -1,4 +1,3 @@
-from enum import auto
 from src.commandblock_py import Datapack
 from src.commandblock_py.basic_commands import commands, selectors, autofill
 
