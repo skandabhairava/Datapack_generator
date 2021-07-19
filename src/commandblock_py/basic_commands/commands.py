@@ -4,17 +4,17 @@ def say(context:str="") -> str :
     """
     return f"say {context}\n"
 
-def op(player:str="") -> str:
+#def op(player:str="") -> str:
     """
     player:str -> Ops the player given
     """
-    return f"op {player}\n"
+    #return f"op {player}\n"
 
-def deop(player:str="") -> str:
+#def deop(player:str="") -> str:
     """
     player:str -> Deops the player given
     """
-    return f"deop {player}\n"
+    #return f"deop {player}\n"
 
 def kill(selector:str="") -> str:
     """
