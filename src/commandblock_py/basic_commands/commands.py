@@ -31,7 +31,8 @@ def tellraw(selector:str="@s", nbt:Dict={"text":"foo"}):
     selector:str -> The thing to say the tellraw to
     nbt:dict -> the json/nbt needed for the tellraw, might add ez nbt later
     """
-
+    if "@e" in selector:
+        return f"tellraw @a {json.dumps(nbt)}\n## @e IS NOT ACCEPTED BY THIS FUNCTION ##"
     return f"tellraw {selector} {json.dumps(nbt)}\n"
 
 def schedule(option:str, function:str, time:str = ""):
