@@ -1,11 +1,10 @@
 from functools import wraps
-from typing import Union
 from .datapack import Datapack as DP
 
 """ import datapack
 DP = datapack.Datapack """
 
-class Datapack:
+class Datapack_wrap:
     def __init__(self, datapack_name :str, namespace_id :str, pack_version :int, loadjson :str, tickjson :str,datapack_description :str = "This datapack was created using commandblock_py") -> None:
         self.datapack_name = datapack_name
         self.datapack_functions = []
@@ -16,28 +15,32 @@ class Datapack:
         self.namespace_id = namespace_id
         self.datapack_description = datapack_description
 
-        DP(self.datapack_name, self.namespace_id, self.pack_version, self.loadjson, self.tickjson, self.datapack_description)
+        self.data = DP(datapack_name=self.datapack_name,namespace_id=self.namespace_id,pack_version=self.pack_version,loadjson=self.loadjson,tickjson=self.tickjson,datapack_description=self.datapack_description)
+        #self.data.gen_dir = os.getcwd()
 
     def new_function(self, file:str):
         def inner_function(function):
             @wraps(function)
             def wrapper(*args, **kwargs):
-                function(context(dp = DP,filename=file), *args, **kwargs)
+                new_context = context()
+                function(new_context, *args, **kwargs)
+                self.data.register_function(name=file,content=new_context.contents)
             return wrapper
         return inner_function
 
     def gen(self,zip:bool=True):
-        DP.generate(self, zip=zip)
+        self.data.generate(zip=zip)
+
+    def make_auto_run(self, func):
+        func()
 
 
 class context:
-    def __init__(self, DP, filename:str):
-        self.filename = filename
-        self.data = DP
+    def __init__(self):
+        self.contents = ""
 
-    def register(self,content:Union[list,str]):
-        self.data.register_function(name = self.filename,content = content)
-
-    
-
-
+    def register(self,content:str):
+        #print("hello")
+        self.contents += content if content[:-1] == "\n" else content + "\n"
+        #self.data.register_function(name = self.filename,content = content)
+        #print(self.data.datapack_functions)
