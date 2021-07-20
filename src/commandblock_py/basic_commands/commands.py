@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Union, Tuple
 import json
 
 def say(context:str="") -> str :
@@ -43,3 +43,18 @@ def schedule(option:str, function:str, time:str = ""):
     
     elif option == "clear":
         return f"schedule {option} {function}\n"
+
+def tp(selector:Union[str, tuple], selector2:Union[str, tuple]):
+    """
+    selector:Union[str, tuple] -> The position to be moved from
+    selector2:Union[str, tuple] -> The position to be moved to
+    """
+    if isinstance(selector, tuple):
+        return f"tp {selector[0]} {selector[1]} {selector[2]}\n"
+
+    else:
+        if isinstance(selector2, tuple):
+            return f"tp {selector} {selector2[0]} {selector2[1]} {selector2[2]}\n"
+        
+        else:
+            return f"tp {selector} {selector2}\n"
