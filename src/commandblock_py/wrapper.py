@@ -19,11 +19,11 @@ class Datapack_wrap:
         #self.data.gen_dir = os.getcwd()
 
     def new_function(self, file:str):
-        x = ""
+        #x = ""
         def inner_function(function):
             @wraps(function)
             def wrapper(*args, **kwargs):
-                new_context = context()
+                new_context = _context()
                 function(new_context, *args, **kwargs)
                 self.data.register_function(name=file,content=new_context.contents)
             return wrapper
@@ -37,7 +37,7 @@ class Datapack_wrap:
         func()
 
 
-class context:
+class _context:
     def __init__(self):
         self.contents = ""
 
