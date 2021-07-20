@@ -1,5 +1,4 @@
-import array, sys, os, shutil
-from typing import Mapping
+import array, sys, os
 from colorama import Fore, Style
 
 curdir = os.getcwd()

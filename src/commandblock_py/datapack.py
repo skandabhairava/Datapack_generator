@@ -46,11 +46,25 @@ class Datapack:
                 os.makedirs(f"{curdir}/.temp")
         except Exception as e:
             print(f"{Fore.RED}ERROR : Oh-oh! An Exception occured while generating a temporary folder at dir \"{curdir}\": {e}{Style.RESET_ALL}")
+
+        self.gen_dir = curdir
+        self.zip = True
+        self.del_scoreboard = False
     def __repr__(self) -> str:
         """
         returns the name of the datapack
         """
         return self.datapack_name
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, exc_traceback):
+        self.generate(self.gen_dir,self.zip,self.del_scoreboard)
+        if exc_type:
+            print(f'exc_type: {exc_type}')
+            print(f'exc_value: {exc_value}')
+            print(f'exc_traceback: {exc_traceback}')
 
     def register_function(self,name:str,content:Union[list,str]):
         """
@@ -86,7 +100,7 @@ class Datapack:
             with open(f"{curdir}/.temp/{name}.mcfunction", "w") as func:
                 func.write(ctx)
             self.datapack_functions.append(name)
-            return True
+            return f"{self.namespace_id}:{name}"
         except Exception as e:
             print(f"{Fore.RED}ERROR : Oh-oh! An Exception occured while registering function \"{name}\" : {e}{Style.RESET_ALL}")
             self.abort(False)
