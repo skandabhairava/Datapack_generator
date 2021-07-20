@@ -31,6 +31,9 @@ class Datapack_wrap:
     def gen(self,zip:bool=True):
         self.data.generate(zip=zip)
 
+    def make_auto_run(self, func):
+        func()
+
 
 class context:
     def __init__(self):
