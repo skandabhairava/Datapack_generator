@@ -1,4 +1,4 @@
-from .datapack import DataPack as DP
+from .datapack import Datapack as DP
 
 class DataPack:
     def __init__(self, datapack_name :str, namespace_id :str, pack_version :int, loadjson :str, tickjson :str,datapack_description :str = "This datapack was created using commandblock_py") -> None:

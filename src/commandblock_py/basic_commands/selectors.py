@@ -1,4 +1,4 @@
-import array, sys, os
+import array, os
 from colorama import Fore, Style
 
 curdir = os.getcwd()
