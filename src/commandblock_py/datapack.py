@@ -38,6 +38,9 @@ class Datapack:
         if len(self.namespace_id) > 5:
             print(f"{Fore.YELLOW}WARNING : The name space id given (\"{self.namespace_id}\") is longer than 5 characters\n          Datapacks are *usually* made with 2-4 namespace characters\n          Nothing will be changed in the datapack{Style.RESET_ALL}")
 
+        if self.pack_version < 4:
+            print(f"{Fore.YELLOW}WARNING : The pack version given (\"{self.pack_version}\") is less than 4. This may cause errors in the datapack{Style.RESET_ALL}")
+
         try:
             try:
                 os.makedirs(f"{curdir}/.temp")

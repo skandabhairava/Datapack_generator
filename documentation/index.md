@@ -1,0 +1,1 @@
+# Datapack generator's documentation
