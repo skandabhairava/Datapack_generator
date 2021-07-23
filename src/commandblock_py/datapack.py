@@ -73,11 +73,10 @@ class Datapack:
         return self
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
-        self.generate(self.gen_dir,self.zip,self.del_scoreboard)
         if exc_type:
-            print(f'exc_type: {exc_type}')
-            print(f'exc_value: {exc_value}')
-            print(f'exc_traceback: {exc_traceback}')
+            print("Datapack successfully closed (\"With statement\")")
+        else:
+            self.generate(self.gen_dir,self.zip,self.del_scoreboard)
 
     def register_function(self,name:str,content:Union[list,str]):
         """
@@ -105,8 +104,12 @@ class Datapack:
         try:
             ctx=""
             if isinstance(content, list):
+                #print(content)
                 for element in content:
-                    ctx += element if element[-1] == "\n" else element + "\n"
+                    if element == "":
+                        ctx += "\n"
+                    else:
+                        ctx += element if element[-1] == "\n" else element + "\n"
             else:
                 ctx += content
 
@@ -135,7 +138,7 @@ class Datapack:
             shutil.rmtree(f"{curdir}/.temp")
             print("Removed temp folder")
         print(f"Finished removing datapack related files. Shutting down system{Style.RESET_ALL}")
-        sys.exit(-1)
+        exit()
 
     def _json_value(self, load:bool) -> str:
         value = """{{

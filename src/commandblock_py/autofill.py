@@ -15,6 +15,6 @@ class _selectors():
     CURRENT_ENTITY = "@s"
     ALL_TARGET_SELECTORS = ["@p", "@a", "@e", "@r", "@s"]
 
-entities = _entities()
+entities_list = _entities()
 
-selectors = _selectors()
+selectors_list = _selectors()

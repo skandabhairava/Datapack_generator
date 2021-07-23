@@ -1,3 +1,4 @@
+from commandblock_py.basic_commands import selectors
 from src.commandblock_py import Datapack
 from src.commandblock_py.basic_commands import commands, scoreboard
 from src.commandblock_py.basic_commands.selectors import selector
@@ -14,5 +15,5 @@ mypack.generate(zip=False)
 #with Datapack(datapack_name="cool_dasadtapack", namespace_id="asadsdsdbc", pack_version=7, datapack_description="My brand new datapack", loadjson="load", tickjson="tickkk") as mypack:
 #    mypack.register_function(name="load",content=["say hi!"])
 #    pp = mypack.register_function(name="pp",content="say hi!")
-#    mypack.register_function(name="tickkk",content=[commands.kill(selectors.selector(selectors.ALL_ENTITIES, type=entities.CREEPER, etcetera_args="limit=5, sort=nearest"))])
+#    mypack.register_function(name="tickkk",content=[commands.kill(selectors.selector(selectors_list.ALL_ENTITIES, type=entities_list.CREEPER, etcetera_args="limit=5, sort=nearest"))])
 #    mypack.zip = False
