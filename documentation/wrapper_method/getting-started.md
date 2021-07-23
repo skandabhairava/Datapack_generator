@@ -2,14 +2,14 @@
 
 First you need to import the wrapper and commands, add this to the top of your file
 ```py
-from src.commandblock_py.wrapper import Datapack_wrap
-from src.commandblock_py.basic_commands import commands
+from commandblock_py.wrapper import Datapack_wrap
+from commandblock_py.basic_commands import commands
 ```
 
 Next you need to initialize it, add this line of code (you can change some stuff like the name or namespace)
 
 ```py
-mypack = Datapack_wrap(datapack_name="cool_dasadtapack", namespace_id="asadsdsdbc", pack_version=7, datapack_description="My brand new datapack", loadjson="load", tickjson="tock")
+mypack = Datapack_wrap(datapack_name="my_cool_datapack", namespace_id="dp", pack_version=7, datapack_description="My brand new datapack", loadjson="load", tickjson="tock")
 ```
 Lets first break it down
 - `datapack_name` is the datapack name
@@ -41,14 +41,22 @@ Lets break this down
 
 - and finally `ctx.register(commands.say(content='hi'))` registers a new command, say, with the content `hi`
 
-Now that we broke it down add this to the very end to generate the datapack
+Now lets add a new function that runs every minecraft tick
+```py
+@mypack.new_function('tock')
+def test2(ctx):
+    ctx.register('say hi!')
+    ctx.register(commands.say(content='tick tock'))
+```
+
+Now that we broke it down, add this to the very end to generate the datapack
 ```py
 if __name__ == "__main__":
     mypack.gen(zip=False)
 ```
 and run it
 
-Now if you did everything correctly you might notice theres an error that says `ERROR : Your Datapack doesn't contain a "load" or a "tickkk" function or both`, if you have another error check if you did everything correctly
+Now if you did everything correctly you might notice theres an error that says `ERROR : Your Datapack doesn't contain a "load" or a "tock" function or both`, if you have another error check if you did everything correctly
 
 This is because we haven't actually called our python functions, you can call them by adding them above `mypack.gen(zip=False)` or you could add `@mypack.make_auto_run` above your python functions
 
@@ -66,8 +74,9 @@ def test(ctx):
 
 @mypack.make_auto_run
 @mypack.new_function('tock')
-def test(ctx):
-    ctx.register(commands.say(content='hi'))
+def test2(ctx):
+    ctx.register('say hi!')
+    ctx.register(commands.say(content='tick tock'))
 
 if __name__ == "__main__":
     mypack.gen(zip=False)```

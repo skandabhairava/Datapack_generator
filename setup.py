@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="commandblockpy",
-    version="0.0.2",
+    version="0.0.3",
     author="Terroid#0490 and Anthony2be#1900",
     author_email="adubovitsky1234@gmail.com",
     description="Datapack Creator",
