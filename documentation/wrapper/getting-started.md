@@ -16,7 +16,7 @@ Lets first break it down
 - `namespace_id` is the namespace
 - `pack_version` is the pack format
 - `datapack_description` is the datapack description
-- `loadjson` and `tickjson` are what the names of the load and tick fuction should be
+- `loadjson` and `tickjson` are what the names of the load and tick function should be
 
 Now that we broke it down we can continue to the next part, actually making the functions
 Add this to your file
