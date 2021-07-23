@@ -12,5 +12,5 @@
 
 ## Documentation
 [Standard Method](/normal/index.md)\
-["With" Method](/normal/index.md)\
-[Wrapper Method](/normal/index.md)
+["With" Method](/with/index.md)\
+[Wrapper Method](/wrapper/index.md)
