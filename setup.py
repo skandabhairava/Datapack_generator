@@ -4,10 +4,10 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="commandblockpy_terroid",
+    name="commandblockpy",
     version="0.0.1",
-    author="Terroid#0490",
-    author_email="skandabhairava@gmail.com",
+    author="Terroid#0490 and Anthony2be#1900",
+    author_email="skandabhairava@gmail.com and adubovitsky1234@gmail.com",
     description="Datapack Creator",
     long_description=long_description,
     long_description_content_type="text/markdown",
