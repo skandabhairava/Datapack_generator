@@ -50,7 +50,7 @@ and run it
 
 Now if you did everything correctly you might notice theres an error that says `ERROR : Your Datapack doesn't contain a "load" or a "tickkk" function or both`, if you have another error check if you did everything correctly
 
-This is because we havent actually called our python packages, you can call them by adding them above `mypack.gen(zip=False)` or you could add `@mypack.make_auto_run` above your python functions
+This is because we haven't actually called our python packages, you can call them by adding them above `mypack.gen(zip=False)` or you could add `@mypack.make_auto_run` above your python functions
 
 The final code should look something like this
 ```py
