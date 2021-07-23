@@ -6,11 +6,11 @@
 
 ## Get started
 
-[Standard Method](/normal/getting-started.md)\
-["With" Method](/with/getting-started.md)\
-[Wrapper Method](/wrapper/getting-started.md)
+[Standard Method](/documentation/normal/getting-started.md)\
+["With" Method](/documentation/with/getting-started.md)\
+[Wrapper Method](/documentation/wrapper/getting-started.md)
 
 ## Documentation
-[Standard Method](/normal/index.md)\
-["With" Method](/with/index.md)\
-[Wrapper Method](/wrapper/index.md)
+[Standard Method](/documentation/normal/index.md)\
+["With" Method](/documentation/with/index.md)\
+[Wrapper Method](/documentation/wrapper/index.md)
