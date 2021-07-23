@@ -16,4 +16,5 @@ def test2(ctx):
 """ test()
 test2() """
 
-mypack.gen(zip=False)
+if __name__ == "__main__":
+    mypack.gen(zip=False)
