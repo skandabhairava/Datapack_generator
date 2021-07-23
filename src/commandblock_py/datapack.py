@@ -26,7 +26,7 @@ class Datapack:
         ##############################
         self.datapack_name = datapack_name
         self.datapack_functions = []
-        self.function_lock = 0
+        self._function_lock = 0
         self.loadjson = loadjson
         self.tickjson = tickjson
         self.pack_version = pack_version
@@ -53,6 +53,16 @@ class Datapack:
         self.gen_dir = curdir
         self.zip = True
         self.del_scoreboard = False
+        self.debug = False
+
+        import atexit
+        atexit.register(self._stop_abrupt)
+
+    def _stop_abrupt(self):
+        if os.path.isdir(f"{curdir}/.temp") and not self.debug:
+            print(f"{Fore.RED}Detected a temp folder, and erasing it{Style.RESET_ALL}")
+            shutil.rmtree(f"{curdir}/.temp")
+
     def __repr__(self) -> str:
         """
         returns the name of the datapack
@@ -87,7 +97,7 @@ class Datapack:
             self.abort(rem_datapack=False)
 
         if name == self.loadjson or name == self.tickjson:
-            self.function_lock += 1
+            self._function_lock += 1
 
         if name in self.datapack_functions:
             print(f"{Fore.YELLOW}WARNING : A function with this name (\"{name}\") already exists. Replacing the function with new content{Style.RESET_ALL}")
@@ -127,7 +137,7 @@ class Datapack:
         print(f"Finished removing datapack related files. Shutting down system{Style.RESET_ALL}")
         sys.exit(-1)
 
-    def private_json_value(self, load:bool) -> str:
+    def _json_value(self, load:bool) -> str:
         value = """{{
     "values":[
         "{0}:{1}"
@@ -152,7 +162,7 @@ class Datapack:
         ## CHECKING IF {LOAD} AND {TICK} MCFUNCTIONS EXIST
 
         print(f"{Fore.CYAN}This datapack generator is still in its Beta stages. If You find any bugs, please send a screenshot of the terminal to \"Terroid#0490\" or \"Anthony2be#1900\" on Discord{Style.RESET_ALL}")
-        if self.function_lock < 2:
+        if self._function_lock < 2:
             print(f"{Fore.RED}ERROR : Your Datapack doesn't contain a \"{self.loadjson}\" or a \"{self.tickjson}\" function or both")
             self.abort(rem_datapack=False)
 
@@ -190,8 +200,8 @@ class Datapack:
             with (open(f"{dir}/{self.datapack_name}/data/minecraft/tags/functions/load.json", "w") as load_json,
                   open(f"{dir}/{self.datapack_name}/data/minecraft/tags/functions/tick.json", "w") as tick_json,
                   open(f"{dir}/{self.datapack_name}/pack.mcmeta", "w") as mcmeta):
-                load_json.write(self.private_json_value(True))
-                tick_json.write(self.private_json_value(False))
+                load_json.write(self._json_value(True))
+                tick_json.write(self._json_value(False))
                 value = f"""{{
     "pack": {{
         "pack_format": {self.pack_version},
