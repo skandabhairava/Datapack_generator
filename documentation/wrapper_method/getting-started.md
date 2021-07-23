@@ -62,8 +62,8 @@ This is because we haven't actually called our python functions, you can call th
 
 The final code should look something like this
 ```py
-from src.commandblock_py.wrapper import Datapack_wrap
-from src.commandblock_py.basic_commands import commands
+from commandblock_py.wrapper import Datapack_wrap
+from commandblock_py.basic_commands import commands
 
 mypack = Datapack_wrap(datapack_name="cool_dasadtapack", namespace_id="asadsdsdbc", pack_version=7, datapack_description="My brand new datapack", loadjson="load", tickjson="tock")
 
