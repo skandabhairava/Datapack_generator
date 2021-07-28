@@ -130,12 +130,22 @@ def stopsound(target:str="@s", sound_type:str=None, sound:str=None):
 
     return f"{syntax}\n"
 
-def function(function:str=""):
+def function(functionn:str=""):
     """
     function:str -> The function to be run
     """
-
-    if function != "":
-        return f"function {function}\n"
+    if isinstance(functionn, str):
+        if functionn != "":
+            return f"function {functionn}\n"
+        else:
+            return ""
+    elif callable(functionn):
+        print("tis a python function")
+        try:
+            print(f"{functionn.mcfunction}")
+            return "\n"
+        except Exception as e:
+            print(e)
+            return "\n"
     else:
-        return ""
+        return "\n"

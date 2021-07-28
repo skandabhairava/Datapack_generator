@@ -25,7 +25,13 @@ class Datapack_wrap:
             def wrapper(*args, **kwargs):
                 new_context = _context()
                 function(new_context, *args, **kwargs)
+                #print(function)
+                #function.mcfunction = f"{self.namespace_id}:{file}"
+                #setattr(function, "__mcfunction__", f"{self.namespace_id}:{file}")
                 self.data.register_function(name=file,content=new_context.contents)
+                #return function(new_context, *args, **kwargs)
+            #print(wrapper)
+            wrapper.mcfunction = f"{self.namespace_id}:{file}"
             return wrapper
         #inner_function.__name__ = x
         return inner_function
@@ -35,6 +41,7 @@ class Datapack_wrap:
 
     def make_auto_run(self, func):
         func()
+        return func
 
 
 class _context:
