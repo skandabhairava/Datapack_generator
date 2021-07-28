@@ -1,5 +1,7 @@
 from functools import wraps
 from .datapack import Datapack as DP
+from colorama import Fore, Style, init
+init(convert=True)
 
 """ import datapack
 DP = datapack.Datapack """
@@ -21,16 +23,12 @@ class Datapack_wrap:
     def new_function(self, file:str):
         #x = ""
         def inner_function(function):
+            function.mcfunction = f'{self.namespace_id}:{file}'
             @wraps(function)
             def wrapper(*args, **kwargs):
                 new_context = _context()
                 function(new_context, *args, **kwargs)
-                #print(function)
-                #function.mcfunction = f"{self.namespace_id}:{file}"
-                #setattr(function, "__mcfunction__", f"{self.namespace_id}:{file}")
                 self.data.register_function(name=file,content=new_context.contents)
-                #return function(new_context, *args, **kwargs)
-            #print(wrapper)
             wrapper.mcfunction = f"{self.namespace_id}:{file}"
             return wrapper
         #inner_function.__name__ = x
@@ -40,6 +38,7 @@ class Datapack_wrap:
         self.data.generate(zip=zip)
 
     def make_auto_run(self, func):
+        print(f'{Fore.YELLOW}WARNING : The make_auto_run wrapper is deprecated so it may cause some things to be incompatible{Style.RESET_ALL}')
         func()
         return func
 

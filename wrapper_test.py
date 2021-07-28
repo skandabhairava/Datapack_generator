@@ -14,14 +14,20 @@ def test(ctx):
 def test2(ctx):
     ctx.register('say hi')
 
-""" test()
-test2() """
+@mypack.make_auto_run
+@mypack.new_function('p')
+def test3(ctx):
+    ctx.register(commands.function(test2))
 
 @mypack.make_auto_run
 @mypack.new_function('h')
-def test3(ctx):
-    ctx.register("say hi!")
-    print(test.mcfunction)
+def test4(ctx):
+    ctx.register(commands.function('h:h'))
+
+@mypack.make_auto_run
+@mypack.new_function('bb')
+def test5(ctx):
+    ctx.register(commands.function(test))
 
 if __name__ == "__main__":
     mypack.gen(zip=False)

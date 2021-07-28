@@ -1,5 +1,7 @@
 from typing import List, Dict, Union, Tuple
 import json
+from colorama import Fore, Style, init
+init(convert=True)
 
 def say(content:str="") -> str :
     """
@@ -130,22 +132,21 @@ def stopsound(target:str="@s", sound_type:str=None, sound:str=None):
 
     return f"{syntax}\n"
 
-def function(functionn:str=""):
+def function(function:Union[str, object]=""):
     """
     function:str -> The function to be run
     """
-    if isinstance(functionn, str):
-        if functionn != "":
-            return f"function {functionn}\n"
+
+    #print(function)
+
+    if function == None:
+        print(f'{Fore.YELLOW}WARNING : Detected that you passed None instead of a string or function into the basic_commands.commands.function, will continue but it may cause your datapack to not work{Style.RESET_ALL}')
+
+    if callable(function):
+        return f"function {function.mcfunction}\n"
+
+    else:
+        if function != "":
+            return f"function {function}\n"
         else:
             return ""
-    elif callable(functionn):
-        print("tis a python function")
-        try:
-            print(f"{functionn.mcfunction}")
-            return "\n"
-        except Exception as e:
-            print(e)
-            return "\n"
-    else:
-        return "\n"
