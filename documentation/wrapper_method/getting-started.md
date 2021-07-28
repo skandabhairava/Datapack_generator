@@ -58,7 +58,7 @@ and run it
 
 Now if you did everything correctly you might notice theres an error that says `ERROR : Your Datapack doesn't contain a "load" or a "tock" function or both`, if you have another error check if you did everything correctly
 
-This is because we haven't actually called our python functions, you can call them by adding them above `mypack.gen(zip=False)`
+This is because we haven't actually called our python functions, you can call them by adding them above `mypack.gen(zip=False)` or by putting `@mypack.make_auto_run` above the functions
 
 The final code should look something like this
 ```py
@@ -67,16 +67,16 @@ from commandblock_py.basic_commands import commands
 
 mypack = Datapack_wrap(datapack_name="cool_dasadtapack", namespace_id="asadsdsdbc", pack_version=7, datapack_description="My brand new datapack", loadjson="load", tickjson="tock")
 
+@mypack.make_auto_run
 @mypack.new_function('load')
 def test(ctx):
     ctx.register(commands.say(content='hi'))
 
+@mypack.make_auto_run
 @mypack.new_function('tock')
 def test2(ctx):
     ctx.register('say hi!')
     ctx.register(commands.say(content='tick tock'))
 
 if __name__ == "__main__":
-    test()
-    test2()
     mypack.gen(zip=False)```

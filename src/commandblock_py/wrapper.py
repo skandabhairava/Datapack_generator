@@ -38,7 +38,7 @@ class Datapack_wrap:
         self.data.generate(zip=zip)
 
     def make_auto_run(self, func):
-        print(f'{Fore.YELLOW}WARNING : The make_auto_run wrapper is deprecated so it may cause some things to be incompatible{Style.RESET_ALL}')
+        #print(f'{Fore.YELLOW}WARNING : The make_auto_run wrapper is deprecated so it may cause some things to be incompatible{Style.RESET_ALL}')
         func()
         return func
 
