@@ -15,8 +15,13 @@ def test(ctx):
 def test2(ctx):
     ctx.register('say hi')
 
-test()
-test2()
+@mypack.new_function('p')
+def test3(ctx):
+    ctx.register(commands.function(test2))
+
+@mypack.new_function('h')
+def test4(ctx):
+    ctx.register(commands.function('h:h'))
 
 print(test)
 print(test2)
@@ -24,6 +29,14 @@ print(test2)
 test.__name__ ='pp'
 print(test.__name__)
 print(test.mcfunction)
+print(test2.mcfunction)
+
+print(callable(test))
+print(callable(test()))
 
 if __name__ == "__main__":
+    test()
+    test2()
+    test3()
+    test4()
     mypack.gen(zip=False)
