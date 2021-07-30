@@ -52,3 +52,16 @@ if __name__ == "__main__":
 If you wanted to generate it as a zip you could remove the `zip=False`
 
 Now when you run the file it should generate a new datapack!
+
+The code should look something like this
+```py
+from commandblock_py import Datapack
+from commandblock_py.basic_commands import commands
+
+mypack = Datapack(datapack_name="commandblockpy_tutorial", namespace_id="hw", pack_version=7, datapack_description="My brand new datapack", loadjson="load", tickjson="tock")
+
+mypack.register_function(name="tock",content=commands.say("hello world"))
+mypack.register_function(name="load",content=commands.say("new datapack"))
+
+if __name__ == "__main__":
+    mypack.generate(zip=False)```
