@@ -7,7 +7,7 @@ from src.commandblock_py.autofill import *
 mypack = Datapack(datapack_name="cool_dasadtapack", namespace_id="asadsdsdbc", pack_version=7, datapack_description="My brand new datapack", loadjson="load", tickjson="tickkk")
 print(mypack)
 print(scoreboard.remove_all())
-mypack.register_function(name="load",content=[commands.tellraw(selector=selectors_list.ALL_PLAYERS,nbt={"text":"DATAPACK LOADED!!"}), commands.function("minecraft:uninstall"), scoreboard.declare(objective="abc"), scoreboard.declare(objective="bbc"), scoreboard.set_val(objective="abc", selector=selectors_list.ALL_PLAYERS, value=5)])
+mypack.register_function(name="load",content=[commands.tellraw(selector=selectors.ALL_PLAYERS,nbt={"text":"DATAPACK LOADED!!"}), commands.function("minecraft:uninstall"), scoreboard.declare(objective="abc"), scoreboard.declare(objective="bbc"), scoreboard.set_val(objective="abc", selector=selectors_list.ALL_PLAYERS, value=5)])
 mypack.register_function(name="tickkk",content="")
 #mypack.register_function(name="stuff",content=[commands.execute(check=[cmd.align("xz"), cmd.anchored("feet"), cmd.as(selector="@e"), cmd.at(selector="@s"), cmd.facing(pos=("1", "2", "3")), cmd.facing(entity="minecraft:creeper",anchor="feet"), cmd.in(dimension="minecraft:overworld"), cmd.positioned(pos=("1", "2", "3")), cmd.positioned(as_selector="@s"), cmd.rotated("""SAME AS POSITIONED""")], run=commands.say("hi!"))])
 mypack.register_function(name="uninstall",content=scoreboard.remove_all())
