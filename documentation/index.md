@@ -9,5 +9,5 @@
 ## Documentation
 [Standard Method](/documentation/scripting_method/index.md)\
 ["With" Method](/documentation/with_statement_method/index.md)\
-[Wrapper Method](/documentation/wrapper_method/index.md)
+[Wrapper Method](/documentation/wrapper_method/index.md)\
 [Commands](/documentation/commands/index.md)
