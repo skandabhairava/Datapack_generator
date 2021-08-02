@@ -35,7 +35,7 @@ def test5(ctx):
 @mypack.make_auto_run
 @mypack.new_function('u')
 def hhhhh(ctx):
-    ctx.register(commands.kill(selector(type=entities.ZOMBIE)))
+    ctx.register(commands.kill(selector(type=entities_list.ZOMBIE)))
 
 if __name__ == "__main__":
     mypack.gen(zip=False)

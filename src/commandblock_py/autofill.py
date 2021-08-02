@@ -2108,10 +2108,10 @@ class _items:
     ZOMBIE_VILLAGER_SPAWN_EGG = "minecraft:zombie_villager_spawn_egg"
     ZOMBIFIED_PIGLIN_SPAWN_EGG = "minecraft:zombified_piglin_spawn_egg"
     
-entities = _entities
+entities_list = _entities
 
-selectors = _selectors
+selectors_list = _selectors
 
-blocks = _blocks
+blocks_list = _blocks
 
-items = _items
+items_list = _items
