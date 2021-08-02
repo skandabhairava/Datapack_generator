@@ -113,8 +113,8 @@ class Datapack:
             else:
                 ctx += content
 
-            os.makedirs(f"{curdir}/.temp/{os.path.dirname(name)}", exist_ok=True)
-            with open(f"{curdir}/.temp/{name}.mcfunction", "w") as func:
+            os.makedirs(f"{curdir}/.temp/mcfunction/{os.path.dirname(name)}", exist_ok=True)
+            with open(f"{curdir}/.temp/mcfunction/{name}.mcfunction", "w") as func:
                 func.write(ctx)
             self.datapack_functions.append(name)
             return f"{self.namespace_id}:{name}"
@@ -220,7 +220,7 @@ class Datapack:
                 # copying the files to the 
                 # destination directory
                 #shutil.copy2(os.path.join(f"{curdir}/.temp",fname), f"{dir}/{self.datapack_name}/data/{self.namespace_id}/functions")
-            copy_tree(os.path.join(f"{curdir}/.temp"), f"{dir}/{self.datapack_name}/data/{self.namespace_id}/functions")
+            copy_tree(os.path.join(f"{curdir}/.temp/mcfunction/"), f"{dir}/{self.datapack_name}/data/{self.namespace_id}/functions")
             l = len(self.datapack_functions)
             printProgressBar(0, l, prefix = 'Progress:', suffix = 'Complete', length = 50)
             for i in range(l):

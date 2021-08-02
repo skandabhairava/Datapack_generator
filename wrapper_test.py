@@ -37,5 +37,42 @@ def test5(ctx):
 def hhhhh(ctx):
     ctx.register(commands.kill(selector(type=entities.ZOMBIE)))
 
+@mypack.make_auto_run
+@mypack.new_function('z')
+def z(ctx):
+    ctx.register(commands.say('pp'))
+    ctx.register(commands.say('pp'))
+    ctx.register(commands.say('pp'))
+    ctx.register(commands.say('pp'))
+    ctx.register(commands.say('pp'))
+    ctx.register(commands.say('pp'))
+    ctx.register(commands.say('pp'))
+    ctx.register(commands.say('pp'))
+    ctx.register(commands.say('pp'))
+    ctx.register(commands.say('pp'))
+    ctx.register(commands.say('pp'))
+    ctx.register(commands.say('pp'))
+    ctx.register(commands.say('pp'))
+    ctx.register(commands.say('pp'))
+    ctx.register(commands.say('pp'))
+    ctx.register(commands.say('pp'))
+
 if __name__ == "__main__":
     mypack.gen(zip=False)
+
+""" class test:
+    mypack = Datapack_wrap(datapack_name="cool_dasadtapack", namespace_id="asadsdsdbc", pack_version=7, datapack_description="My brand new datapack", loadjson="load", tickjson="tick")
+
+    @mypack.make_auto_run
+    @mypack.new_function('load')
+    def load(ctx):
+        ctx.register('say hi')
+
+    @mypack.make_auto_run
+    @mypack.new_function('tick')
+    def tick(ctx):
+        ctx.register('say hi')
+
+    mypack.gen()
+
+test() """
