@@ -3,7 +3,7 @@
 First you need to import the wrapper and commands, add this to the top of your file
 ```py
 from commandblock_py.wrapper import Datapack_wrap
-from commandblock_py.basic_commands import commands
+from commandblock_py.commands import basic_commands as commands
 ```
 
 Next you need to initialize it, add this line of code (you can change some stuff like the name or namespace)
@@ -63,7 +63,7 @@ This is because we haven't actually called our python functions, you can call th
 The final code should look something like this
 ```py
 from commandblock_py.wrapper import Datapack_wrap
-from commandblock_py.basic_commands import commands
+from commandblock_py.commands import basic_commands as commands
 
 mypack = Datapack_wrap(datapack_name="cool_dasadtapack", namespace_id="asadsdsdbc", pack_version=7, datapack_description="My brand new datapack", loadjson="load", tickjson="tock")
 

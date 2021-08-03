@@ -19,11 +19,3 @@ or
 ```py
 mypack.register_function(name="tock",content=[commands.say("hello world"),commands.say("hello world 2")])
 ```
-
-## `def abort(self, rem_datapack:bool, dir:str=curdir)`
-Aborts the datapack generation
-
-Example usage:
-```py
-mypack.abort(rem_datapack=True)
-```

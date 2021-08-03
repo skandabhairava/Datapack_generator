@@ -3,7 +3,7 @@
 First lets import the Scripting/With method and the basic commands
 ```py
 from commandblock_py import Datapack
-from commandblock_py.basic_commands import commands
+from commandblock_py.commands import basic_commands as commands
 ```
 
 Next lets initialize the with method
@@ -46,7 +46,7 @@ mypack.zip = False
 The code should look something like
 ```py
 from commandblock_py import Datapack
-from commandblock_py.basic_commands import commands
+from commandblock_py.commands import basic_commands as commands
 
 with Datapack(datapack_name="cool_datapack", namespace_id="with", pack_version=7, datapack_description="My brand new datapack", loadjson="load", tickjson="tick") as mypack:
   mypack.register_function(name="load",content=commands.say('hi'))

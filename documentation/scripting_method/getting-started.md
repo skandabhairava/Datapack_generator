@@ -3,7 +3,7 @@
 First you should import the Scripting/With method and the basic commands
 ```py
 from commandblock_py import Datapack
-from commandblock_py.basic_commands import commands
+from commandblock_py.commands import basic_commands as commands
 ```
 Next you should initialize the Scripting Method
 
@@ -56,7 +56,7 @@ Now when you run the file it should generate a new datapack!
 The code should look something like this
 ```py
 from commandblock_py import Datapack
-from commandblock_py.basic_commands import commands
+from commandblock_py.commands import basic_commands as commands
 
 mypack = Datapack(datapack_name="commandblockpy_tutorial", namespace_id="hw", pack_version=7, datapack_description="My brand new datapack", loadjson="load", tickjson="tock")
 
