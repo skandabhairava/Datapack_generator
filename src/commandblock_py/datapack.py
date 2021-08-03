@@ -1,5 +1,5 @@
 from distutils.dir_util import copy_tree
-import re, sys, os, shutil, time
+import re, sys, os, shutil, time, json
 from typing import Union
 from colorama import Fore, Style, init
 from .bar import printProgressBar
@@ -26,6 +26,7 @@ class Datapack:
         ##############################
         self.datapack_name = datapack_name
         self.datapack_functions = []
+        self.datapack_recipes = []
         self._function_lock = 0
         self.loadjson = loadjson
         self.tickjson = tickjson
@@ -78,12 +79,10 @@ class Datapack:
         else:
             self.generate(self.gen_dir,self.zip,self.del_scoreboard)
 
-    def register_function(self,name:str,content:Union[list,str]):
+    def register_function(self,name:str="foo",content:Union[list,str]="say bar"):
         """
         name:str -> Holds the name of the function (without namespace)
         content:str -> Holds the content of the function
-
-        returns True if a function has been generated
 
         example : 
             register_function(name="load",content="say loaded!")
@@ -121,6 +120,35 @@ class Datapack:
         except Exception as e:
             print(f"{Fore.RED}ERROR : Oh-oh! An Exception occured while registering function \"{name}\" : {e}{Style.RESET_ALL}")
             self.abort(False)
+
+    def register_recipe(self,name:str="foo",content:dict={}):
+        """
+        name:str -> Holds the name of the recipe (without namespace)
+        content:dict -> Holds the content of the recipe
+
+        example : 
+            register_recipe(name="load",content=furnace(items_list.WOODEN_HOE, items_list.DIAMOND))
+        """
+        ##############################
+        ## REGISTERING A DATAPACK FUNCTION
+        ##############################
+        if (not bool(re.match('^[a-z/]+$', name))):
+            print(f"{Fore.RED}ERROR : The recipe name must only contain characters from [a-z] : {name}{Style.RESET_ALL}")
+            self.abort(rem_datapack=False)
+
+        if name in self.datapack_recipes:
+            print(f"{Fore.YELLOW}WARNING : A recipe with this name (\"{name}\") already exists. Replacing the recipe with new content{Style.RESET_ALL}")
+
+        try:
+            os.makedirs(f"{curdir}/.temp/recipes/{os.path.dirname(name)}", exist_ok=True)
+            with open(f"{curdir}/.temp/recipes/{name}.json", "w") as func:
+                func.write(json.dumps(content))
+            self.datapack_recipes.append(name)
+            return f"{self.namespace_id}:{name}"
+        except Exception as e:
+            print(f"{Fore.RED}ERROR : Oh-oh! An Exception occured while registering recipe \"{name}\" : {e}{Style.RESET_ALL}")
+            self.abort(False)
+
 
     def abort(self, rem_datapack:bool, dir:str=curdir):
         """
@@ -214,25 +242,14 @@ class Datapack:
                 mcmeta.write(value)
             ## MCFUNCTIONS
 
-            #printProgressBar(0, length, prefix = 'Progress:', suffix = 'Complete', length = 50)
-            files=os.listdir(f"{curdir}/.temp")
-            #for fname in files:
-                # copying the files to the 
-                # destination directory
-                #shutil.copy2(os.path.join(f"{curdir}/.temp",fname), f"{dir}/{self.datapack_name}/data/{self.namespace_id}/functions")
+            print(f"{Fore.GREEN}Generating MCFUNCTION files{Style.RESET_ALL}")
             copy_tree(os.path.join(f"{curdir}/.temp/mcfunction/"), f"{dir}/{self.datapack_name}/data/{self.namespace_id}/functions")
-            l = len(self.datapack_functions)
-            printProgressBar(0, l, prefix = 'Progress:', suffix = 'Complete', length = 50)
-            for i in range(l):
-                # Do stuff...
-                time.sleep(0.1)
-                # Update Progress Bar
-                printProgressBar(i + 1, l, prefix = 'Progress:', suffix = 'Complete', length = 50)
+            _progress_manager(len(self.datapack_functions))
 
-            ## RECIPES
-            if os.path.isdir(f"{curdir}/.temp/recipes/"):
-                print(f"{Fore.GREEN}Generating recipes...{Style.RESET_ALL}")
+            if len(self.datapack_recipes) != 0:
+                print(f"{Fore.GREEN}Generating RECIPE files{Style.RESET_ALL}")
                 copy_tree(os.path.join(f"{curdir}/.temp/recipes/"), f"{dir}/{self.datapack_name}/data/{self.namespace_id}/recipes")
+                _progress_manager(len(self.datapack_recipes))
 
             print(f"{Fore.GREEN}SUCCESS : The datapack \"{self.datapack_name}\" has been generated at \"{dir}\"!{Style.RESET_ALL}")
         except Exception as e:
@@ -266,3 +283,11 @@ class Datapack:
                 print(f"{Fore.RED}ERROR : Oh-oh! an Exception occured while deleting the scoreboard.dat file : {e}{Style.RESET_ALL}")
 
         return True
+
+def _progress_manager(l):
+    printProgressBar(0, l, prefix = 'Progress:', suffix = 'Complete', length = 50)
+    for i in range(l):
+        # Do stuff...
+        time.sleep(0.1)
+        # Update Progress Bar
+        printProgressBar(i + 1, l, prefix = 'Progress:', suffix = 'Complete', length = 50)

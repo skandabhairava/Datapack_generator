@@ -1,15 +1,19 @@
-from typing import List, Dict, Pattern, Union, Tuple
+from typing import Union
 from colorama import Fore, Style, init
 import json, os
 init(convert=True) #for colorama windows
 
 curdir = os.getcwd()
 
-def crafting(name:str, layout:Union[Tuple,List], result:str, count:int=1, shaped:bool = True, group:str = ""):
+def crafting(layout:Union[tuple,list]=None, result:str="minecraft:knowledge_book", count:int=1, shaped:bool = True, group:str = ""):
     #print(layout)
     #print(layout[0])
     #print(layout[1])
     #print(layout[2])
+
+    if layout == None:
+        return {}
+
     keys = ['#', '@', 'X', 'O', 'Q', 'P', 'J', '%', '$']
     data = {}
     assigned_keys = {}
@@ -100,9 +104,9 @@ def crafting(name:str, layout:Union[Tuple,List], result:str, count:int=1, shaped
     else:
         pass
 
-        return data
+    return data
 
-def furnace(name:str, input:str, output:str, xp:Union[int,str] = 0.1, time:Union[int,float] = 200, group:str=''):
+def furnace(input:str="minecraft:stone", output:str="minecraft:knowledge_book", xp:Union[int,float] = 0.1, time:Union[int,float] = 200, group:str=''):
     data = {}
     data['type'] = 'minecraft:smelting'
     data['ingredient'] = {}
@@ -115,7 +119,7 @@ def furnace(name:str, input:str, output:str, xp:Union[int,str] = 0.1, time:Union
 
     return data
 
-def blast_furnace(name:str, input:str, output:str, xp:Union[int,str] = 0.1, time:Union[int,float] = 200, group:str=''):
+def blast_furnace(input:str="minecraft:stone", output:str="minecraft:knowledge_book", xp:Union[int,float] = 0.1, time:Union[int,float] = 200, group:str=''):
     data = {}
     data['type'] = 'minecraft:blasting'
     data['ingredient'] = {}
@@ -128,7 +132,7 @@ def blast_furnace(name:str, input:str, output:str, xp:Union[int,str] = 0.1, time
 
     return data
 
-def smoker(name:str, input:str, output:str, xp:Union[int,str] = 0.1, time:Union[int,float] = 200, group:str=''):
+def smoker(input:str="minecraft:stone", output:str="minecraft:knowledge_book", xp:Union[int,float] = 0.1, time:Union[int,float] = 200, group:str=''):
     data = {}
     data['type'] = 'minecraft:smoking'
     data['ingredient'] = {}
@@ -141,7 +145,7 @@ def smoker(name:str, input:str, output:str, xp:Union[int,str] = 0.1, time:Union[
 
     return data
 
-def campfire(name:str, input:str, output:str, xp:Union[int,str] = 0.1, time:Union[int,float] = 200, group:str=''):
+def campfire(input:str="minecraft:stone", output:str="minecraft:knowledge_book", xp:Union[int,float] = 0.1, time:Union[int,float] = 200, group:str=''):
     data = {}
     data['type'] = 'minecraft:campfire_cooking'
     data['ingredient'] = {}
@@ -154,7 +158,7 @@ def campfire(name:str, input:str, output:str, xp:Union[int,str] = 0.1, time:Unio
 
     return data
     
-def stone_cutter(name:str, input:str, output:str, count:int = 1, group:str=''):
+def stone_cutter(input:str="minecraft:stone", output:str="minecraft:knowledge_book", count:int = 1, group:str=''):
     data = {}
     data['type'] = 'minecraft:campfire_cooking'
     data['ingredient'] = {}
@@ -166,7 +170,7 @@ def stone_cutter(name:str, input:str, output:str, count:int = 1, group:str=''):
 
     return data
 
-def smithing(name:str, base:str, addition:str, output:str, group:str=''):
+def smithing(base:str="minecraft:stone", addition:str="minecraft:stone", output:str="minecraft:knowledge_book", group:str=''):
     data = {}
     data['type'] = 'minecraft:smithing'
     data['base'] = {}
