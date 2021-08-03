@@ -1,8 +1,8 @@
 from commandblock_py import autofill
 from src.commandblock_py.wrapper import *
-from src.commandblock_py.basic_commands import commands
-from src.commandblock_py.autofill import *
-from src.commandblock_py.basic_commands.selectors import selector
+from src.commandblock_py.commands import basic_commands
+from src.commandblock_py.utils.autofill import *
+from src.commandblock_py.utils.selectors import selector
 
 from typing import List, Dict, Pattern, Union, Tuple
 from colorama import Fore, Style, init
