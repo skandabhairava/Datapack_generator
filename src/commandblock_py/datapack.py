@@ -229,6 +229,11 @@ class Datapack:
                 # Update Progress Bar
                 printProgressBar(i + 1, l, prefix = 'Progress:', suffix = 'Complete', length = 50)
 
+            ## RECIPES
+            if os.path.isdir(f"{curdir}/.temp/recipes/"):
+                print(f"{Fore.GREEN}Generating recipes...{Style.RESET_ALL}")
+                copy_tree(os.path.join(f"{curdir}/.temp/recipes/"), f"{dir}/{self.datapack_name}/data/{self.namespace_id}/recipes")
+
             print(f"{Fore.GREEN}SUCCESS : The datapack \"{self.datapack_name}\" has been generated at \"{dir}\"!{Style.RESET_ALL}")
         except Exception as e:
             print(f"{Fore.RED}ERROR : Oh-oh! An Exception occured while generating the datapack : {e}{Style.RESET_ALL}")

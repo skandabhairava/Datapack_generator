@@ -1,9 +1,3 @@
-from commandblock_py import autofill
-from src.commandblock_py.wrapper import *
-from src.commandblock_py.commands import basic_commands
-from src.commandblock_py.utils.autofill import *
-from src.commandblock_py.utils.selectors import selector
-
 from typing import List, Dict, Pattern, Union, Tuple
 from colorama import Fore, Style, init
 import json, os
@@ -106,7 +100,10 @@ def crafting(name:str, layout:Union[Tuple,List], result:str, count:int=1, shaped
     else:
         pass
 
-    with open(f'{name}.json','w') as f:
+    os.makedirs(f"{curdir}/.temp/recipes/{os.path.dirname(name)}", exist_ok=True)
+    with open(f'{curdir}/.temp/recipes/{name}.json','w') as f:
+        if os.path.isfile(f"{curdir}/.temp/recipes/{name}.json"):
+            print(f"{Fore.YELLOW}WARNING : A recipe with this name (\"{name}\") already exists. Replacing the recipe with new content{Style.RESET_ALL}")
         json.dump(data, f, indent=4)
 
 def furnace(name:str, input:str, output:str, xp:Union[int,str] = 0.1, time:Union[int,float] = 200, group:str=''):
@@ -120,7 +117,10 @@ def furnace(name:str, input:str, output:str, xp:Union[int,str] = 0.1, time:Union
     if group != '':
         data['group'] = group
 
-    with open(f'{name}.json','w') as f:
+    os.makedirs(f"{curdir}/.temp/recipes/{os.path.dirname(name)}", exist_ok=True)
+    with open(f'{curdir}/.temp/recipes/{name}.json','w') as f:
+        if os.path.isfile(f"{curdir}/.temp/recipes/{name}.json"):
+            print(f"{Fore.YELLOW}WARNING : A recipe with this name (\"{name}\") already exists. Replacing the recipe with new content{Style.RESET_ALL}")
         json.dump(data, f, indent=4)
 
 def blast_furnace(name:str, input:str, output:str, xp:Union[int,str] = 0.1, time:Union[int,float] = 200, group:str=''):
@@ -134,7 +134,10 @@ def blast_furnace(name:str, input:str, output:str, xp:Union[int,str] = 0.1, time
     if group != '':
         data['group'] = group
 
-    with open(f'{name}.json','w') as f:
+    os.makedirs(f"{curdir}/.temp/recipes/{os.path.dirname(name)}", exist_ok=True)
+    with open(f'{curdir}/.temp/recipes/{name}.json','w') as f:
+        if os.path.isfile(f"{curdir}/.temp/recipes/{name}.json"):
+            print(f"{Fore.YELLOW}WARNING : A recipe with this name (\"{name}\") already exists. Replacing the recipe with new content{Style.RESET_ALL}")
         json.dump(data, f, indent=4)
 
 def smoker(name:str, input:str, output:str, xp:Union[int,str] = 0.1, time:Union[int,float] = 200, group:str=''):
@@ -148,7 +151,10 @@ def smoker(name:str, input:str, output:str, xp:Union[int,str] = 0.1, time:Union[
     if group != '':
         data['group'] = group
 
-    with open(f'{name}.json','w') as f:
+    os.makedirs(f"{curdir}/.temp/recipes/{os.path.dirname(name)}", exist_ok=True)
+    with open(f'{curdir}/.temp/recipes/{name}.json','w') as f:
+        if os.path.isfile(f"{curdir}/.temp/recipes/{name}.json"):
+            print(f"{Fore.YELLOW}WARNING : A recipe with this name (\"{name}\") already exists. Replacing the recipe with new content{Style.RESET_ALL}")
         json.dump(data, f, indent=4)
 
 def campfire(name:str, input:str, output:str, xp:Union[int,str] = 0.1, time:Union[int,float] = 200, group:str=''):
@@ -162,7 +168,10 @@ def campfire(name:str, input:str, output:str, xp:Union[int,str] = 0.1, time:Unio
     if group != '':
         data['group'] = group
 
-    with open(f'{name}.json','w') as f:
+    os.makedirs(f"{curdir}/.temp/recipes/{os.path.dirname(name)}", exist_ok=True)
+    with open(f'{curdir}/.temp/recipes/{name}.json','w') as f:
+        if os.path.isfile(f"{curdir}/.temp/recipes/{name}.json"):
+            print(f"{Fore.YELLOW}WARNING : A recipe with this name (\"{name}\") already exists. Replacing the recipe with new content{Style.RESET_ALL}")
         json.dump(data, f, indent=4)
     
 def stone_cutter(name:str, input:str, output:str, count:int = 1, group:str=''):
@@ -175,7 +184,10 @@ def stone_cutter(name:str, input:str, output:str, count:int = 1, group:str=''):
     if group != '':
         data['group'] = group
 
-    with open(f'{name}.json','w') as f:
+    os.makedirs(f"{curdir}/.temp/recipes/{os.path.dirname(name)}", exist_ok=True)
+    with open(f'{curdir}/.temp/recipes/{name}.json','w') as f:
+        if os.path.isfile(f"{curdir}/.temp/recipes/{name}.json"):
+            print(f"{Fore.YELLOW}WARNING : A recipe with this name (\"{name}\") already exists. Replacing the recipe with new content{Style.RESET_ALL}")
         json.dump(data, f, indent=4)
 
 def smithing(name:str, base:str, addition:str, output:str, group:str=''):
@@ -190,5 +202,8 @@ def smithing(name:str, base:str, addition:str, output:str, group:str=''):
     if group != '':
         data['group'] = group
 
-    with open(f'{name}.json','w') as f:
+    os.makedirs(f"{curdir}/.temp/recipes/{os.path.dirname(name)}", exist_ok=True)
+    with open(f'{curdir}/.temp/recipes/{name}.json','w') as f:
+        if os.path.isfile(f"{curdir}/.temp/recipes/{name}.json"):
+            print(f"{Fore.YELLOW}WARNING : A recipe with this name (\"{name}\") already exists. Replacing the recipe with new content{Style.RESET_ALL}")
         json.dump(data, f, indent=4)
