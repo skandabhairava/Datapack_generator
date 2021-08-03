@@ -20,7 +20,7 @@ class Datapack_wrap:
         self.data = DP(datapack_name=self.datapack_name,namespace_id=self.namespace_id,pack_version=self.pack_version,loadjson=self.loadjson,tickjson=self.tickjson,datapack_description=self.datapack_description)
         #self.data.gen_dir = os.getcwd()
 
-    def new_function(self, file:str):
+    def new_function(self, file:str, namespace:str = ''):
         #x = ""
         def inner_function(function):
             function.mcfunction = f'{self.namespace_id}:{file}'
@@ -28,7 +28,7 @@ class Datapack_wrap:
             def wrapper(*args, **kwargs):
                 new_context = _context()
                 function(new_context, *args, **kwargs)
-                self.data.register_function(name=file,content=new_context.contents)
+                self.data.register_function(name=file,content=new_context.contents, namespace=namespace)
             wrapper.mcfunction = f"{self.namespace_id}:{file}"
             return wrapper
         #inner_function.__name__ = x

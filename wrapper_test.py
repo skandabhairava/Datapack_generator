@@ -37,7 +37,7 @@ def hhhhh(ctx):
     ctx.register(commands.kill(selector(type=entities_list.ZOMBIE)))
 
 @mypack.make_auto_run
-@mypack.new_function('z')
+@mypack.new_function('z', 'z')
 def z(ctx):
     ctx.register(commands.say('pp'))
     ctx.register(commands.say('pp'))
