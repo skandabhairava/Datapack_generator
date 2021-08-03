@@ -79,7 +79,7 @@ class Datapack:
         else:
             self.generate(self.gen_dir,self.zip,self.del_scoreboard)
 
-    def register_function(self,name:str="foo",content:Union[list,str]="say bar"):
+    def register_function(self,name:str="foo",content:Union[list,str]="say bar", namespace:str = ''):
         """
         name:str -> Holds the name of the function (without namespace)
         content:str -> Holds the content of the function
@@ -112,16 +112,25 @@ class Datapack:
             else:
                 ctx += content
 
-            os.makedirs(f"{curdir}/.temp/mcfunction/{os.path.dirname(name)}", exist_ok=True)
-            with open(f"{curdir}/.temp/mcfunction/{name}.mcfunction", "w") as func:
-                func.write(ctx)
-            self.datapack_functions.append(name)
-            return f"{self.namespace_id}:{name}"
+            if namespace == '':
+                os.makedirs(f"{curdir}/.temp/{self.datapack_name}/{self.namespace_id}/functions/{os.path.dirname(name)}", exist_ok=True)
+                with open(f"{curdir}/.temp/{self.datapack_name}/{self.namespace_id}/functions/{name}.mcfunction", "w") as func:
+                    func.write(ctx)
+                self.datapack_functions.append(name)
+                return f"{self.namespace_id}:{name}"
+
+            elif namespace != '':
+                os.makedirs(f"{curdir}/.temp/{self.datapack_name}/{namespace}/functions/{os.path.dirname(name)}", exist_ok=True)
+                with open(f"{curdir}/.temp/{self.datapack_name}/{namespace}/functions/{name}.mcfunction", "w") as func:
+                    func.write(ctx)
+                self.datapack_functions.append(name)
+                return f"{namespace}:{name}"
+
         except Exception as e:
             print(f"{Fore.RED}ERROR : Oh-oh! An Exception occured while registering function \"{name}\" : {e}{Style.RESET_ALL}")
             self.abort(False)
 
-    def register_recipe(self,name:str="foo",content:dict={}):
+    def register_recipe(self,name:str="foo",content:dict={}, namespace:str = ''):
         """
         name:str -> Holds the name of the recipe (without namespace)
         content:dict -> Holds the content of the recipe
@@ -140,11 +149,21 @@ class Datapack:
             print(f"{Fore.YELLOW}WARNING : A recipe with this name (\"{name}\") already exists. Replacing the recipe with new content{Style.RESET_ALL}")
 
         try:
-            os.makedirs(f"{curdir}/.temp/recipes/{os.path.dirname(name)}", exist_ok=True)
-            with open(f"{curdir}/.temp/recipes/{name}.json", "w") as func:
-                func.write(json.dumps(content))
-            self.datapack_recipes.append(name)
-            return f"{self.namespace_id}:{name}"
+
+            if namespace == '':
+                os.makedirs(f"{curdir}/.temp/{self.datapack_name}/{self.namespace_id}/recipes/{os.path.dirname(name)}", exist_ok=True)
+                with open(f"{curdir}/.temp/{self.datapack_name}/{self.namespace_id}/recipes/{name}.json", "w") as func:
+                    func.write(json.dumps(content))
+                self.datapack_recipes.append(name)
+                return f"{self.namespace_id}:{name}"
+
+            elif namespace != '':
+                os.makedirs(f"{curdir}/.temp/{self.datapack_name}/{namespace}/recipes/{os.path.dirname(name)}", exist_ok=True)
+                with open(f"{curdir}/.temp/{self.datapack_name}/{namespace}/recipes/{name}.json", "w") as func:
+                    func.write(json.dumps(content))
+                self.datapack_recipes.append(name)
+                return f"{self.namespace_id}:{name}"
+            
         except Exception as e:
             print(f"{Fore.RED}ERROR : Oh-oh! An Exception occured while registering recipe \"{name}\" : {e}{Style.RESET_ALL}")
             self.abort(False)
@@ -242,14 +261,18 @@ class Datapack:
                 mcmeta.write(value)
             ## MCFUNCTIONS
 
-            print(f"{Fore.GREEN}Generating MCFUNCTION files{Style.RESET_ALL}")
+            """ print(f"{Fore.GREEN}Generating MCFUNCTION files{Style.RESET_ALL}")
             copy_tree(os.path.join(f"{curdir}/.temp/mcfunction/"), f"{dir}/{self.datapack_name}/data/{self.namespace_id}/functions")
             _progress_manager(len(self.datapack_functions))
 
             if len(self.datapack_recipes) != 0:
                 print(f"{Fore.GREEN}Generating RECIPE files{Style.RESET_ALL}")
                 copy_tree(os.path.join(f"{curdir}/.temp/recipes/"), f"{dir}/{self.datapack_name}/data/{self.namespace_id}/recipes")
-                _progress_manager(len(self.datapack_recipes))
+                _progress_manager(len(self.datapack_recipes)) """
+
+            print(f"{Fore.GREEN}Generating MCFUNCTION files{Style.RESET_ALL}")
+            copy_tree(os.path.join(f"{curdir}/.temp/{self.datapack_name}"), f"{dir}/{self.datapack_name}/data/")
+            _progress_manager(len(self.datapack_recipes) + len(self.datapack_functions))
 
             print(f"{Fore.GREEN}SUCCESS : The datapack \"{self.datapack_name}\" has been generated at \"{dir}\"!{Style.RESET_ALL}")
         except Exception as e:
