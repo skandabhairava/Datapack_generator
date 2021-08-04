@@ -33,7 +33,7 @@ class Datapack:
         self.pack_version = pack_version
         self.namespace_id = namespace_id
         self.datapack_description = datapack_description
-        if (not bool(re.match('^[a-z_]+$', self.datapack_name))) or (not bool(re.match('^[a-z]+$', self.namespace_id))):
+        if bool(re.match('^[^a-z_]+$', self.datapack_name)) or bool(re.match('^[^a-z_]+$', self.namespace_id)):
             print(f"{Fore.RED}ERROR : The datapack_name/namespace_id must only contain characters from [a-z]{Style.RESET_ALL}")
             sys.exit(-1)
         if len(self.namespace_id) > 5:
