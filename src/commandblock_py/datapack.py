@@ -310,7 +310,5 @@ class Datapack:
 def _progress_manager(l):
     printProgressBar(0, l, prefix = 'Progress:', suffix = 'Complete', length = 50)
     for i in range(l):
-        # Do stuff...
-        time.sleep(0.1)
-        # Update Progress Bar
+        #time.sleep(0.1)
         printProgressBar(i + 1, l, prefix = 'Progress:', suffix = 'Complete', length = 50)
