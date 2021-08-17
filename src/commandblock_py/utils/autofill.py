@@ -1,4 +1,4 @@
-class _entities:
+class entities_list:
     AREA_EFFECT_CLOUD = "minecraft:area_effect_cloud"
     ARMOR_STAND = "minecraft:armor_stand"
     ARROW = "minecraft:arrow"
@@ -113,7 +113,7 @@ class _entities:
     ZOMBIE_VILLAGER = "minecraft:zombie_villager"
     ZOMBIFIED_PIGLIN = "minecraft:zombified_piglin"
 
-class _selectors:
+class selectors_list:
     NEAREST_PLAYER = "@p"
     ALL_PLAYERS = "@a"
     ALL_ENTITIES = "@e"
@@ -121,7 +121,7 @@ class _selectors:
     CURRENT_ENTITY = "@s"
     ALL_TARGET_SELECTORS = ["@p", "@a", "@e", "@r", "@s"]
 
-class _blocks:
+class blocks_list:
     AIR = "minecraft:air"
     STONE = "minecraft:stone"
     GRANITE = "minecraft:granite"
@@ -1006,7 +1006,7 @@ class _blocks:
     WHITE_CANDLE = "minecraft:white_candle"
     YELLOW_CANDLE = "minecraft:yellow_candle"
 
-class _items:
+class items_list:
     ACACIA_BOAT = "minecraft:acacia_boat"
     ACACIA_BUTTON = "minecraft:acacia_button"
     ACACIA_DOOR = "minecraft:acacia_door"
@@ -2108,10 +2108,10 @@ class _items:
     ZOMBIE_VILLAGER_SPAWN_EGG = "minecraft:zombie_villager_spawn_egg"
     ZOMBIFIED_PIGLIN_SPAWN_EGG = "minecraft:zombified_piglin_spawn_egg"
     
-entities_list = _entities
+#entities_list = _entities
 
-selectors_list = _selectors
+#selectors_list = _selectors
 
-blocks_list = _blocks
+#blocks_list = _blocks
 
-items_list = _items
+#items_list = _items

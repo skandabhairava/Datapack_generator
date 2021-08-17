@@ -6,30 +6,30 @@ from src.commandblock_py.utils.selectors import selector
 mypack = Datapack_wrap(datapack_name="cool_dasadtapack", namespace_id="asadsdsdbc", pack_version=7, datapack_description="My brand new datapack", loadjson="load", tickjson="tickkk")
 
 @mypack.make_auto_run
-@mypack.new_function('load')
-def test(ctx):
+@mypack.new_function()
+def load(ctx):
     ctx.register('say hi')
     #print("hello")
 
 @mypack.make_auto_run
-@mypack.new_function('tickkk')
-def test2(ctx):
+@mypack.new_function()
+def tickkk(ctx):
     ctx.register(commands.say('pp'))
 
 @mypack.make_auto_run
 @mypack.new_function('p')
-def test3(ctx):
-    ctx.register(commands.function(test2))
+def testr(ctx):
+    ctx.register(commands.function(tickkk))
 
 @mypack.make_auto_run
 @mypack.new_function('h')
-def test4(ctx):
+def testpp(ctx):
     ctx.register(commands.function('h:h'))
 
 @mypack.make_auto_run
 @mypack.new_function('bb')
-def test5(ctx):
-    ctx.register(commands.function(test))
+def teste(ctx):
+    ctx.register(commands.function(load))
 
 @mypack.make_auto_run
 @mypack.new_function('u')
