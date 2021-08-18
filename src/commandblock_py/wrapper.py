@@ -1,6 +1,7 @@
 from functools import wraps
 from .datapack import Datapack as DP
 from colorama import Fore, Style, init
+import inspect
 init(convert=True)
 
 """ import datapack
@@ -34,6 +35,10 @@ class Datapack_wrap:
             dir2 += file
 
             #print(dir2)
+            """ frame = inspect.stack()[1]
+            module = inspect.getmodule(frame[0])
+            filename = frame[0].f_code.co_filename
+            print(filename) """
 
             function.mcfunction = f'{self.namespace_id}:{dir2}'
             @wraps(function)

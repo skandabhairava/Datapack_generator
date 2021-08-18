@@ -9,7 +9,6 @@ mypack = Datapack_wrap(datapack_name="cool_dasadtapack", namespace_id="asadsdsdb
 @mypack.new_function()
 def load(ctx):
     ctx.register('say hi')
-    #print("hello")
 
 @mypack.make_auto_run
 @mypack.new_function()
@@ -22,8 +21,13 @@ def testr(ctx):
     ctx.register(commands.function(tickkk))
 
 @mypack.make_auto_run
-@mypack.new_function('h')
+@mypack.new_function('h/pp')
 def testpp(ctx):
+    ctx.register(commands.function('h:h'))
+
+@mypack.make_auto_run
+@mypack.new_function('h')
+def t(ctx):
     ctx.register(commands.function('h:h'))
 
 @mypack.make_auto_run
