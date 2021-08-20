@@ -1,3 +1,5 @@
+This is a python library to make datapacks
+
 - THIS PROJECT IS A COLLABORATION WITH ANTHONY2BE
 - CONTACT US : (Discord)
   - SKANDA - "Terroid#0490" (451333819174354944) ("skandabhairava@gmail.com")
